@@ -7,18 +7,16 @@ Terraform project to set up NSX-T Load Balancing for CockroachDB.
 * Terraform v0.13+
 * NSX-T 3.1+
 
-## Orchestration System
+## Initial Setup
 
-This is the linux system used to invoke Terraform ando create the test environment.
+This configured the linux system used to invoke Terraform and create the environment.
 
-### Orchestration System Setup
-
-#### 1. Install requirements.
+### Install requirements.
  ```
  sudo yum -y install git wget unzip
  ```
 
-#### 2. Install Terraform
+### Install Terraform
  ```
  # Create binary folder
  mkdir ${HOME}/bin
@@ -42,7 +40,7 @@ This is the linux system used to invoke Terraform ando create the test environme
  echo "Installed: `${HOME}/bin/terraform version`"
  ```
 
-#### 3. Clone git repository
+### Clone git repository
  ```
  # Change to home directory
  cd ~
@@ -51,7 +49,9 @@ This is the linux system used to invoke Terraform ando create the test environme
  git clone https://github.com/cleeistaken/automation-cockroach-nsxt-lb.git
  ```
 
-#### 4. Create an HTTP monitor
+## Deployment
+
+### Create an HTTP monitor
    
 As of version 3.1.1 the Terraform NSX-T provider can import a monitor but 
 lacks the functionality to create. The active HTTP monitor will need to
@@ -63,7 +63,7 @@ Ref.
  * https://registry.terraform.io/providers/vmware/nsxt/latest
  * https://github.com/vmware/terraform-provider-nsxt
 
-#### 5. Initialize Terraform
+### Initialize Terraform
 ```
 # Change to Terraform folder
 cd ~/automation-cockroach-nsxt-lb/cockroach/terraform/
@@ -75,7 +75,7 @@ terraform init
 cp terraform.tfvars.sample terraform .tfvars 
 ```
 
-#### 6. Configure the environment
+### Configure the environment
 Edit terraform.tfvars and update the following mandatory fields.
 
 **NSX-T Manager**
@@ -92,7 +92,15 @@ Edit terraform.tfvars and update the following mandatory fields.
 * nsxt_policy_lb_virtual_server_ip
 * nsxt_policy_lb_monitor_active_name (the name of the monitor created in step4)
 
-#### 7. Deploy Cockroach environment
+### Deploy NSX-T Load Balancer
 ```
 terraform apply
 ```
+
+## Validation
+
+### Network Topology Before
+![NSX-T LB Monitors](images/nsxt-network-before.png)
+
+### Network Topology After
+![NSX-T LB Monitors](images/nsxt-network-after.png)
