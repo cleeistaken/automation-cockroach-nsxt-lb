@@ -1,0 +1,130 @@
+#
+# Commented lines are set to their default valued. Uncomment to change.
+#
+
+#
+# NSX-T Manager Configuration
+# -------------------------------------
+nsxt_manager = "nsx01.vsphere.local"
+nsxt_user = "admin"
+nsxt_password = "password"
+nsxt_insecure_ssl = true
+
+#
+# Environment Configuration
+# -------------------------------------
+
+# This is the transport zone used by the hosts and edges.
+nsxt_policy_transport_zone = "nsxt-overlay"
+
+# This is the Tier-0 gateway that we will attach the Tier-1 gateway that we create.
+nsxt_policy_tier0_gateway = "nsxt-t0-gw01"
+
+# This is the edge cluster running the Tier-0 and Tier-1 gateways.
+nsxt_policy_edge_cluster = "nsxt-ec01"
+
+# This is the IP that will be used for the segment gateway. This also determines
+# the network that will be used for the overlay backed segment.
+nsxt_segment_1_cidr = "192.168.240.1/24"
+
+# This is the IP that will be used for the load balancer.
+nsxt_policy_lb_virtual_server_ip = "192.168.100.1"
+
+# This is name of the CockroachDB HTTP monitor.
+nsxt_policy_lb_monitor_active_name = "crdb-http-lb-monitor"
+
+#
+# Below are additional settings set to their default values. If needed,
+# uncomment and change as required.
+#
+
+#
+# General Configuration
+# -------------------------------------
+#crdb_management_port = 8080
+#crdb_sql_port = 26257
+
+#
+# Terraform Environment Build Variables
+#
+
+# Prefix used for all created objects
+#global_prefix = "crdb-01"
+
+# Tags
+#nsxt_tag_scope = "Terraform"
+#nsxt_tag = "CockroachDB"
+
+# Tier 1 Gateway
+#nsxt_t1_gw_name_suffix = "t1-gw01"
+
+# Segment 1
+#nsxt_segment_1_name_suffix = "segment01"
+
+
+#
+# Monitor
+# -------------------------------------
+
+# Active Monitor
+#nsxt_policy_lb_monitor_active_name = "crdb-http-lb-monitor"
+
+# Passive Monitor
+#nsxt_policy_lb_monitor_passive = "default-passive-lb-monitor"
+
+#
+# Profiles
+# -------------------------------------
+
+# HTTP Persistence Profile
+#nsxt_policy_lb_persistence_profile ="default-source-ip-lb-persistence-profile"
+
+# Management HTTP LB Application Profile
+#nsxt_policy_lb_app_profile_http = "default-http-lb-app-profile"
+
+# SQL TCP LB Application Profile
+#nsxt_policy_lb_app_profile_tcp = "default-tcp-lb-app-profile"
+
+#
+# Group
+# -------------------------------------
+
+# Group 01
+#nsxt_policy_group_1_suffix = "group01"
+
+#
+# Server Pool
+# -------------------------------------
+
+# Server Pool 01
+#nsxt_policy_lb_pool_1_name_suffix = "http-pool"
+#nsxt_policy_lb_pool_1_algorithm = "ROUND_ROBIN"
+
+# Server Pool 02
+#nsxt_policy_lb_pool_2_name_suffix = "sql-pool"
+#nsxt_policy_lb_pool_2_algorithm = "ROUND_ROBIN"
+
+
+#
+# Load Balancer
+# -------------------------------------
+
+# Load Balancer 01
+#nsxt_policy_lb_service_name_suffix = "lb"
+#nsxt_policy_lb_service_size = "SMALL"
+#nsxt_policy_lb_service_error_log_level = "ERROR"
+
+
+#
+# Virtual Server
+# -------------------------------------
+
+# Virtual Server 01
+#nsxt_policy_lb_virtual_server_1_name_suffix = "http-vs"
+#nsxt_policy_lb_virtual_server_1_ports = ["8080"]
+#nsxt_policy_lb_virtual_server_1_pool_ports = ["8080"]
+
+# Virtual Server 02
+#nsxt_policy_lb_virtual_server_2_name_suffix = "sql-vs"
+#nsxt_policy_lb_virtual_server_2_ports = ["26257"]
+#nsxt_policy_lb_virtual_server_2_pool_ports = ["26257"]
