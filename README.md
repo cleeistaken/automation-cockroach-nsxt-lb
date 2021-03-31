@@ -104,3 +104,7 @@ terraform apply
 
 ### Network Topology After
 ![NSX-T LB Monitors](images/nsxt-network-after.png)
+
+### Network Topology After
+Network diagram with the CocroachDB nodes deployed.
+![NSX-T LB Monitors](images/nsxt-network-with-nodes.png)
